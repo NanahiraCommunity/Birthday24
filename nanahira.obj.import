@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://1lpauuqqe6b6"
+path="res://.godot/imported/nanahira.obj-571a17613fe3d377abe16a209bdd22fa.mesh"
+
+[deps]
+
+files=["res://.godot/imported/nanahira.obj-571a17613fe3d377abe16a209bdd22fa.mesh"]
+
+source_file="res://nanahira.obj"
+dest_files=["res://.godot/imported/nanahira.obj-571a17613fe3d377abe16a209bdd22fa.mesh", "res://.godot/imported/nanahira.obj-571a17613fe3d377abe16a209bdd22fa.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

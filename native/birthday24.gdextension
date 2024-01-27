@@ -1,0 +1,9 @@
+[configuration]
+
+entry_symbol = "birthday24_gdextension_entry"
+compatibility_minimum = "4.1"
+
+[libraries]
+
+linux.64 = "libbirthday24.so"
+windows.64 = "birthday24.dll"

@@ -1,0 +1,9 @@
+{
+	"fileVersion": 1,
+	"versions": {
+		"gamut": "2.3.2",
+		"godot-dlang": {"path":"../../godot-dlang"},
+		"intel-intrinsics": "1.11.17",
+		"utf_bc": "0.2.1"
+	}
+}
