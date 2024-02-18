@@ -2,6 +2,7 @@
 
 entry_symbol = "birthday24_gdextension_entry"
 compatibility_minimum = "4.1"
+reloadable = true
 
 [libraries]
 

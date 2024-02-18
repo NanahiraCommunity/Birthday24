@@ -2,6 +2,8 @@ name "birthday24"
 authors "webfreak"
 dependency "godot-dlang" version="~>0.6.0"
 dependency "gamut" version="~>2.3.2"
+dependency "fast_noise" version="~>1.0.5"
+
 targetType "dynamicLibrary"
 dflags "-dllimport=defaultLibsOnly" platform="windows-ldc"
 dflags "-dip1000" "-checkaction=context"

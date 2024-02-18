@@ -10,6 +10,8 @@ import godot.gridmap;
 
 import std.conv;
 import std.datetime.stopwatch;
+import std.random;
+import std.typecons;
 
 //dfmt off
 // UDA
@@ -31,7 +33,185 @@ enum Blocks : uint
 	@("cliff_blockSlopeHalfWalls_rock")
 	grassSlope,
 	@("ground_riverTile", yOffset = 1)
-	riverTile
+	riverTile,
+	@("grass")
+	grass1,
+	@("grass_large")
+	grass2,
+	@("grass_leafs")
+	grass3,
+	@("grass_leafsLarge")
+	grass4,
+	@("plant_bush")
+	bush1,
+	@("plant_bushDetailed")
+	bush2,
+	@("plant_bushLarge")
+	bush3,
+	@("plant_bushLargeTriangle")
+	bush4,
+	@("plant_bushTriangle")
+	bush5,
+	@("plant_bushSmall")
+	bush6,
+	@("plant_flatShort")
+	bush7,
+	@("plant_flatTall")
+	bush8,
+	@("flower_purpleA")
+	flower1,
+	@("flower_purpleB")
+	flower2,
+	@("flower_purpleC")
+	flower3,
+	@("flower_redA")
+	flower4,
+	@("flower_redB")
+	flower5,
+	@("flower_redC")
+	flower6,
+	@("flower_yellowA")
+	flower7,
+	@("flower_yellowB")
+	flower8,
+	@("flower_yellowC")
+	flower9,
+	@("flowersLow")
+	flower10,
+	@("mushroom_red")
+	mushrooms1,
+	@("mushroom_redGroup")
+	mushrooms2,
+	@("mushroom_redTall")
+	mushrooms3,
+	@("mushroom_tan")
+	mushrooms4,
+	@("mushroom_tanGroup")
+	mushrooms5,
+	@("mushroom_tanTall")
+	mushrooms6,
+	@("stone_tallA")
+	rocks1,
+	@("stone_tallB")
+	rocks2,
+	@("stone_tallC")
+	rocks3,
+	@("stone_tallD")
+	rocks4,
+	@("stone_tallE")
+	rocks5,
+	@("stone_tallF")
+	rocks6,
+	@("stone_tallG")
+	rocks7,
+	@("stone_tallH")
+	rocks8,
+	@("stone_tallI")
+	rocks9,
+	@("stone_tallJ")
+	rocks10,
+	@("stump_old")
+	stump1,
+	@("stump_oldTall")
+	stump2,
+	@("stump_round")
+	stump3,
+	@("stump_roundDetailed")
+	stump4,
+	@("shovel-dirt")
+	items1,
+	@("tree_cone")
+	tree1,
+	@("tree_cone_dark")
+	tree2,
+	@("tree_default")
+	tree3,
+	@("tree_default_dark")
+	tree4,
+	@("tree_detailed")
+	tree5,
+	@("tree_detailed_dark")
+	tree6,
+	@("tree_fat")
+	tree7,
+	@("tree_fat_darkh")
+	tree8,
+	@("tree_oak")
+	tree9,
+	@("tree_oak_dark")
+	tree10,
+	@("tree_pineDefaultA")
+	tree11,
+	@("tree_pineDefaultB")
+	tree12,
+	@("tree_pineGroundA")
+	tree13,
+	@("tree_pineGroundB")
+	tree14,
+	@("tree_pineRoundA")
+	tree15,
+	@("tree_pineRoundB")
+	tree16,
+	@("tree_pineRoundC")
+	tree17,
+	@("tree_pineRoundD")
+	tree18,
+	@("tree_pineRoundE")
+	tree19,
+	@("tree_pineRoundF")
+	tree20,
+	@("tree_pineSmallA")
+	tree21,
+	@("tree_pineSmallB")
+	tree22,
+	@("tree_pineSmallC")
+	tree23,
+	@("tree_pineSmallD")
+	tree24,
+}
+
+private Blocks[] blockList(string prefix)()
+{
+	import std.algorithm;
+	import std.ascii;
+
+	Blocks[] ret;
+	foreach (b; __traits(allMembers, Blocks))
+		static if (b.startsWith(prefix) && b[prefix.length .. $].all!isDigit)
+			ret ~= __traits(getMember, Blocks, b);
+	return ret;
+}
+
+static struct BlockLists
+{
+	static struct UniformDistribution
+	{
+		immutable(Blocks[]) blocks;
+		double probability;
+	}
+
+	static struct SimplexDistribution
+	{
+		immutable(Blocks[]) blocks;
+		Vector3 scale;
+		double threshold;
+		double probability;
+	}
+
+	static immutable Blocks[] grasses = blockList!"grass";
+	static immutable Blocks[] bushes = blockList!"bush";
+	static immutable Blocks[] flowers = blockList!"flower";
+	static immutable Blocks[] mushrooms = blockList!"mushrooms";
+	static immutable Blocks[] rocks = blockList!"rocks";
+	static immutable Blocks[] stumps = blockList!"stump";
+	static immutable Blocks[] items = blockList!"items";
+	static immutable Blocks[] trees = blockList!"tree";
+
+	enum distributions = AliasSeq!(
+		UniformDistribution(grasses, 0.5),
+		SimplexDistribution(flowers, Vector3(7, 1, 7), 0.3, 0.7),
+		SimplexDistribution(trees, Vector3(5, 1, 5), 0.2, 0.2),
+	);
 }
 
 class WorldGen : GodotScript!Node
@@ -42,7 +222,10 @@ class WorldGen : GodotScript!Node
 		int yOffset;
 	}
 
+	enum globalOffset = Vector3i(-10, 0, -25);
+
 	@Property GridMap worldmap;
+	@Property GridMap interactables;
 
 	GridMap[4] overlaps;
 
@@ -75,7 +258,7 @@ class WorldGen : GodotScript!Node
 
 	void place(int x, int y, int z, Blocks block, int rot)
 	{
-		auto pos = Vector3i(x - 10, y + blocks[block].yOffset, z - 25);
+		auto pos = Vector3i(x, y + blocks[block].yOffset, z) + globalOffset;
 		foreach (ref map; overlaps) {
 			if (block == Blocks.air) {
 				map.setCellItem(pos, -1, 0);
@@ -95,7 +278,7 @@ class WorldGen : GodotScript!Node
 		vmap[index(x, y, z)] = block;
 	}
 
-	void postprocess()
+	@Method postprocess()
 	{
 		foreach (y; 0 .. layers)
 			foreach (z; 1 .. height - 1)
@@ -167,11 +350,53 @@ class WorldGen : GodotScript!Node
 						if (isDiag)
 							place(x, y, z, Blocks.grassCliffCorner, rotZ(rot));
 				}
-
 	}
 
-	@Method
-	void _ready()
+	@Method addVegetation(uint seed)
+	{
+		import fast_noise;
+
+		Random rng;
+		rng.seed(seed);
+
+		FNLState simplex = fnlCreateState(rng.uniform!uint);
+		simplex.noise_type = FNLNoiseType.FNL_NOISE_OPENSIMPLEX2;
+
+		foreach (y; 0 .. layers - 1)
+		foreach (z; 1 .. height - 1)
+		foreach (x; 1 .. width - 1)
+		{
+			if (vmap[index(x, y, z)] != Blocks.fullGrass || vmap[index(x, y + 1, z)] != Blocks.air)
+				continue;
+
+			auto pos = Vector3i(x, y + 1, z) + globalOffset;
+			static foreach (distribution; BlockLists.distributions)
+			{{
+				static if (is(typeof(distribution) == BlockLists.UniformDistribution))
+				{
+					if (rng.uniform01!double < distribution.probability)
+					{
+						interactables.setCellItem(pos,
+							blocks[distribution.blocks[uniform(0, $, rng)]].id,
+							rotZ(uniform(0, 4, rng)));
+					}
+				}
+				else static if (is(typeof(distribution) == BlockLists.SimplexDistribution))
+				{
+					auto noise = fnlGetNoise3D(&simplex, x * distribution.scale.x, y * distribution.scale.y, z * distribution.scale.z);
+					print(String("noise: " ~ noise.to!string));
+					if (noise >= distribution.threshold && rng.uniform01!double < distribution.probability)
+					{
+						interactables.setCellItem(pos,
+							blocks[distribution.blocks[uniform(0, $, rng)]].id,
+							rotZ(uniform(0, 4, rng)));
+					}
+				}
+			}}
+		}
+	}
+
+	@Method _ready()
 	{
 		if (Engine.isEditorHint)
 			return;
@@ -179,8 +404,7 @@ class WorldGen : GodotScript!Node
 		this.callDeferred("build");
 	}
 
-	@Method
-	void build()
+	@Method build()
 	{
 		import gamut;
 
@@ -253,6 +477,7 @@ class WorldGen : GodotScript!Node
 		}
 
 		postprocess();
+		addVegetation(unpredictableSeed);
 
 		sw.stop();
 		print(gs!"Built world map in ", String(sw.peek.to!string));

@@ -1,6 +1,7 @@
 {
 	"fileVersion": 1,
 	"versions": {
+		"fast_noise": "1.0.5",
 		"gamut": "2.3.3",
 		"godot-dlang": "0.6.0",
 		"intel-intrinsics": "1.11.18",
