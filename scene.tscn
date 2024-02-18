@@ -1,25 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://crkwdkx55bn3c"]
+[gd_scene load_steps=6 format=3 uid="uid://crkwdkx55bn3c"]
 
 [ext_resource type="MeshLibrary" uid="uid://dj0ts46jjk2jj" path="res://tiles.tres" id="1_6vof7"]
 [ext_resource type="Script" path="res://Player.gd" id="1_qc0gj"]
-
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_w4ota"]
-sky_top_color = Color(0.254902, 0.470588, 0.627451, 1)
-sky_horizon_color = Color(0.560784, 0.67451, 0.737255, 1)
-ground_bottom_color = Color(0.2, 0.168627, 0.133333, 1)
-ground_horizon_color = Color(0.572549, 0.67451, 0.721569, 1)
-
-[sub_resource type="Sky" id="Sky_tt6vg"]
-sky_material = SubResource("ProceduralSkyMaterial_w4ota")
-
-[sub_resource type="Environment" id="Environment_8ka2r"]
-background_mode = 2
-sky = SubResource("Sky_tt6vg")
-ssao_enabled = true
-ssao_radius = 0.77
-ssao_intensity = 3.01
-ssao_power = 2.70375
-sdfgi_use_occlusion = true
+[ext_resource type="PackedScene" uid="uid://qqpws51twfvt" path="res://WorldEnvironment.tscn" id="1_tk37p"]
+[ext_resource type="Script" path="res://scripts/time_systems/TimeHub.gd" id="4_odhhq"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wq805"]
 radius = 0.1
@@ -27,8 +11,7 @@ height = 0.5
 
 [node name="Scene" type="Node3D"]
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_8ka2r")
+[node name="WorldEnvironment" parent="." instance=ExtResource("1_tk37p")]
 
 [node name="CharacterBody3D" type="CharacterBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6, 2.09505, 0.6)
@@ -61,3 +44,29 @@ metadata/_editor_floor_ = Vector3(0, 0, 0)
 [node name="WorldGen" type="WorldGen" parent="." node_paths=PackedStringArray("worldmap", "interactables")]
 worldmap = NodePath("../StaticWorld")
 interactables = NodePath("../Interactables")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="weekdayLabel" type="Label" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Sun"
+
+[node name="timeLabel" type="Label" parent="CanvasLayer"]
+offset_top = 40.0
+offset_right = 40.0
+offset_bottom = 63.0
+text = "0"
+
+[node name="dayLabel" type="Label" parent="CanvasLayer"]
+offset_left = 56.0
+offset_right = 96.0
+offset_bottom = 23.0
+text = "0"
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("4_odhhq")

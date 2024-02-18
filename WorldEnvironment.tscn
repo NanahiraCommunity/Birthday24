@@ -1,0 +1,148 @@
+[gd_scene load_steps=12 format=3 uid="uid://qqpws51twfvt"]
+
+[ext_resource type="Script" path="res://scripts/time_systems/DayNight.gd" id="1_ntas7"]
+
+[sub_resource type="Gradient" id="Gradient_xpqfr"]
+colors = PackedColorArray(0, 0, 0.533333, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_q8jbk"]
+gradient = SubResource("Gradient_xpqfr")
+fill_from = Vector2(1, 0.56044)
+
+[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_fpwyt"]
+night_sky = SubResource("GradientTexture2D_q8jbk")
+
+[sub_resource type="Sky" id="Sky_mhx4g"]
+sky_material = SubResource("PhysicalSkyMaterial_fpwyt")
+
+[sub_resource type="Environment" id="Environment_35g5c"]
+background_mode = 2
+sky = SubResource("Sky_mhx4g")
+
+[sub_resource type="Animation" id="Animation_qavjv"]
+resource_name = "Day"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DirectionalLight3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(1.5708, 0, 0), Vector3(-1.5708, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:environment:sky:sky_material:mie_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.69, 0.729, 0.812, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_3oela"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DirectionalLight3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-1.5708, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:environment:sky:sky_material:mie_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.69, 0.729, 0.812, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_6r3wp"]
+resource_name = "Evening"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DirectionalLight3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-1.5708, 0, 0), Vector3(-0.523599, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:environment:sky:sky_material:mie_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.690196, 0.729412, 0.811765, 1), Color(0, 0.819608, 0.917647, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_6vw05"]
+resource_name = "Night"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DirectionalLight3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.523599, 0, 0), Vector3(1.5708, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:environment:sky:sky_material:mie_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0.819608, 0.917647, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lxrqj"]
+_data = {
+"Day": SubResource("Animation_qavjv"),
+"Evening": SubResource("Animation_6r3wp"),
+"Night": SubResource("Animation_6vw05"),
+"RESET": SubResource("Animation_3oela")
+}
+
+[node name="WorldEnvironment" type="WorldEnvironment"]
+environment = SubResource("Environment_35g5c")
+script = ExtResource("1_ntas7")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_lxrqj")
+}

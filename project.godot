@@ -17,4 +17,4 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-TimeSystem="*res://scripts/TimeSystem.gd"
+TimeSystem="*res://scripts/time_systems/TimeSystem.gd"
