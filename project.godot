@@ -14,3 +14,7 @@ config/name="Birthday24"
 run/main_scene="res://scene.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+TimeSystem="*res://scripts/TimeSystem.gd"

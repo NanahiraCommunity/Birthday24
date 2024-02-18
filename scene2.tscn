@@ -1,0 +1,49 @@
+[gd_scene load_steps=4 format=3 uid="uid://ckn0or03btu5p"]
+
+[ext_resource type="PackedScene" uid="uid://qqpws51twfvt" path="res://DayNight.tscn" id="1_63wfg"]
+[ext_resource type="Script" path="res://CharacterBody3D.gd" id="1_hib1q"]
+[ext_resource type="MeshLibrary" uid="uid://xa1sbb8blo6p" path="res://tiles.tres" id="2_5c6eo"]
+
+[node name="Scene" type="Node3D"]
+
+[node name="WorldEnvironment" parent="." instance=ExtResource("1_63wfg")]
+timeOfDay = 0.0
+rateOfTime = 4.1
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6, 1, 0.6)
+script = ExtResource("1_hib1q")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CharacterBody3D"]
+size = Vector3(0.2, 0.5, 0.2)
+
+[node name="Camera3D" type="Camera3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 0.819152, 0.573576, 0, -0.573576, 0.819152, 0, 10.286, 14.977)
+fov = 10.0
+
+[node name="StaticWorld" type="GridMap" parent="."]
+mesh_library = ExtResource("2_5c6eo")
+cell_size = Vector3(1, 0.5, 1)
+metadata/_editor_floor_ = Vector3(0, 0, 0)
+
+[node name="Interactables" type="GridMap" parent="."]
+mesh_library = ExtResource("2_5c6eo")
+cell_size = Vector3(1, 0.5, 1)
+metadata/_editor_floor_ = Vector3(0, 0, 0)
+
+[node name="WorldGen" type="WorldGen" parent="." node_paths=PackedStringArray("worldmap", "interactables")]
+worldmap = NodePath("../StaticWorld")
+interactables = NodePath("../Interactables")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="WeekdayLabel" type="RichTextLabel" parent="CanvasLayer"]
+offset_right = 49.0
+offset_bottom = 33.0
+text = "Sun"
+
+[node name="TimeLabel" type="RichTextLabel" parent="CanvasLayer"]
+offset_top = 32.0
+offset_right = 132.0
+offset_bottom = 72.0
+text = "00.00"
