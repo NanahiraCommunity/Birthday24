@@ -22,151 +22,151 @@ YOffset yOffset(int y) { return YOffset(y); }
 enum Blocks : uint
 {
 	air,
-	@("ground_grass", yOffset = 1)
+	@("ground_grass2", yOffset = 1)
 	fullGrass,
-	@("cliff_half_rock")
+	@("cliff_half_rock2")
 	grassCliff,
-	@("cliff_halfCorner_rock")
+	@("cliff_halfCorner_rock2")
 	grassCliffCorner,
-	@("cliff_halfCornerInner_rock")
+	@("cliff_halfCornerInner_rock2")
 	grassCliffCornerInner,
-	@("cliff_blockSlopeHalfWalls_rock")
+	@("cliff_blockSlopeHalfWalls_rock2")
 	grassSlope,
-	@("ground_riverTile", yOffset = 1)
+	@("ground_riverTile2", yOffset = 1)
 	riverTile,
-	@("grass")
+	@("grass2")
 	grass1,
-	@("grass_large")
+	@("grass_large2")
 	grass2,
-	@("grass_leafs")
+	@("grass_leafs2")
 	grass3,
-	@("grass_leafsLarge")
+	@("grass_leafsLarge2")
 	grass4,
-	@("plant_bush")
+	@("plant_bush2")
 	bush1,
-	@("plant_bushDetailed")
+	@("plant_bushDetailed2")
 	bush2,
-	@("plant_bushLarge")
+	@("plant_bushLarge2")
 	bush3,
-	@("plant_bushLargeTriangle")
+	@("plant_bushLargeTriangle2")
 	bush4,
-	@("plant_bushTriangle")
+	@("plant_bushTriangle2")
 	bush5,
-	@("plant_bushSmall")
+	@("plant_bushSmall2")
 	bush6,
-	@("plant_flatShort")
+	@("plant_flatShort2")
 	bush7,
-	@("plant_flatTall")
+	@("plant_flatTall2")
 	bush8,
-	@("flower_purpleA")
+	@("flower_purpleA2")
 	flower1,
-	@("flower_purpleB")
+	@("flower_purpleB2")
 	flower2,
-	@("flower_purpleC")
+	@("flower_purpleC2")
 	flower3,
-	@("flower_redA")
+	@("flower_redA2")
 	flower4,
-	@("flower_redB")
+	@("flower_redB2")
 	flower5,
-	@("flower_redC")
+	@("flower_redC2")
 	flower6,
-	@("flower_yellowA")
+	@("flower_yellowA2")
 	flower7,
-	@("flower_yellowB")
+	@("flower_yellowB2")
 	flower8,
-	@("flower_yellowC")
+	@("flower_yellowC2")
 	flower9,
-	@("flowersLow")
+	@("flowersLow2")
 	flower10,
-	@("mushroom_red")
+	@("mushroom_red2")
 	mushrooms1,
-	@("mushroom_redGroup")
+	@("mushroom_redGroup2")
 	mushrooms2,
-	@("mushroom_redTall")
+	@("mushroom_redTall2")
 	mushrooms3,
-	@("mushroom_tan")
+	@("mushroom_tan2")
 	mushrooms4,
-	@("mushroom_tanGroup")
+	@("mushroom_tanGroup2")
 	mushrooms5,
-	@("mushroom_tanTall")
+	@("mushroom_tanTall2")
 	mushrooms6,
-	@("stone_tallA")
+	@("stone_tallA2")
 	rocks1,
-	@("stone_tallB")
+	@("stone_tallB2")
 	rocks2,
-	@("stone_tallC")
+	@("stone_tallC2")
 	rocks3,
-	@("stone_tallD")
+	@("stone_tallD2")
 	rocks4,
-	@("stone_tallE")
+	@("stone_tallE2")
 	rocks5,
-	@("stone_tallF")
+	@("stone_tallF2")
 	rocks6,
-	@("stone_tallG")
+	@("stone_tallG2")
 	rocks7,
-	@("stone_tallH")
+	@("stone_tallH2")
 	rocks8,
-	@("stone_tallI")
+	@("stone_tallI2")
 	rocks9,
-	@("stone_tallJ")
+	@("stone_tallJ2")
 	rocks10,
-	@("stump_old")
+	@("stump_old2")
 	stump1,
-	@("stump_oldTall")
+	@("stump_oldTall2")
 	stump2,
-	@("stump_round")
+	@("stump_round2")
 	stump3,
-	@("stump_roundDetailed")
+	@("stump_roundDetailed2")
 	stump4,
-	@("shovel-dirt")
+	@("shovel-dirt2")
 	items1,
-	@("tree_cone")
+	@("tree_cone2")
 	tree1,
-	@("tree_cone_dark")
+	@("tree_cone_dark2")
 	tree2,
-	@("tree_default")
+	@("tree_default2")
 	tree3,
-	@("tree_default_dark")
+	@("tree_default_dark2")
 	tree4,
-	@("tree_detailed")
+	@("tree_detailed2")
 	tree5,
-	@("tree_detailed_dark")
+	@("tree_detailed_dark2")
 	tree6,
-	@("tree_fat")
+	@("tree_fat2")
 	tree7,
-	@("tree_fat_darkh")
+	@("tree_fat_darkh2")
 	tree8,
-	@("tree_oak")
+	@("tree_oak2")
 	tree9,
-	@("tree_oak_dark")
+	@("tree_oak_dark2")
 	tree10,
-	@("tree_pineDefaultA")
+	@("tree_pineDefaultA2")
 	tree11,
-	@("tree_pineDefaultB")
+	@("tree_pineDefaultB2")
 	tree12,
-	@("tree_pineGroundA")
+	@("tree_pineGroundA2")
 	tree13,
-	@("tree_pineGroundB")
+	@("tree_pineGroundB2")
 	tree14,
-	@("tree_pineRoundA")
+	@("tree_pineRoundA2")
 	tree15,
-	@("tree_pineRoundB")
+	@("tree_pineRoundB2")
 	tree16,
-	@("tree_pineRoundC")
+	@("tree_pineRoundC2")
 	tree17,
-	@("tree_pineRoundD")
+	@("tree_pineRoundD2")
 	tree18,
-	@("tree_pineRoundE")
+	@("tree_pineRoundE2")
 	tree19,
-	@("tree_pineRoundF")
+	@("tree_pineRoundF2")
 	tree20,
-	@("tree_pineSmallA")
+	@("tree_pineSmallA2")
 	tree21,
-	@("tree_pineSmallB")
+	@("tree_pineSmallB2")
 	tree22,
-	@("tree_pineSmallC")
+	@("tree_pineSmallC2")
 	tree23,
-	@("tree_pineSmallD")
+	@("tree_pineSmallD2")
 	tree24,
 }
 

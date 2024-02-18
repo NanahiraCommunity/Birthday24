@@ -1,7 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://crkwdkx55bn3c"]
+[gd_scene load_steps=7 format=3 uid="uid://crkwdkx55bn3c"]
 
-[ext_resource type="Script" path="res://CharacterBody3D.gd" id="1_2vt1s"]
-[ext_resource type="MeshLibrary" uid="uid://xa1sbb8blo6p" path="res://tiles.tres" id="1_6vof7"]
+[ext_resource type="MeshLibrary" uid="uid://dj0ts46jjk2jj" path="res://tiles.tres" id="1_6vof7"]
+[ext_resource type="Script" path="res://Player.gd" id="1_qc0gj"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_w4ota"]
 sky_top_color = Color(0.254902, 0.470588, 0.627451, 1)
@@ -21,14 +21,21 @@ ssao_intensity = 3.01
 ssao_power = 2.70375
 sdfgi_use_occlusion = true
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wq805"]
+radius = 0.1
+height = 0.5
+
 [node name="Scene" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_8ka2r")
 
 [node name="CharacterBody3D" type="CharacterBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6, 1, 0.6)
-script = ExtResource("1_2vt1s")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6, 2.09505, 0.6)
+script = ExtResource("1_qc0gj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+shape = SubResource("CapsuleShape3D_wq805")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="CharacterBody3D"]
 size = Vector3(0.2, 0.5, 0.2)
