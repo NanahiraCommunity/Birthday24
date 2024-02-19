@@ -6,16 +6,18 @@
 [ext_resource type="Script" path="res://scripts/time_systems/TimeHub.gd" id="4_odhhq"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wq805"]
-radius = 0.1
-height = 0.5
+radius = 0.25
+height = 0.7
 
 [node name="Scene" type="Node3D"]
 
 [node name="WorldEnvironment" parent="." instance=ExtResource("1_tk37p")]
 
-[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+[node name="CharacterBody3D" type="CharacterBody3D" parent="." node_paths=PackedStringArray("static_world_map", "interactables_map")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6, 2.09505, 0.6)
 script = ExtResource("1_qc0gj")
+static_world_map = NodePath("../StaticWorld")
+interactables_map = NodePath("../Interactables")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
 shape = SubResource("CapsuleShape3D_wq805")

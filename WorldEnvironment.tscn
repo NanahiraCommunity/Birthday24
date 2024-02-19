@@ -46,33 +46,6 @@ tracks/1/keys = {
 "values": [Color(0.69, 0.729, 0.812, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_3oela"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("DirectionalLight3D:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(-1.5708, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:environment:sky:sky_material:mie_color")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0.69, 0.729, 0.812, 1)]
-}
-
 [sub_resource type="Animation" id="Animation_6r3wp"]
 resource_name = "Evening"
 tracks/0/type = "value"
@@ -127,6 +100,33 @@ tracks/1/keys = {
 "values": [Color(0, 0.819608, 0.917647, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_3oela"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DirectionalLight3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-1.5708, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:environment:sky:sky_material:mie_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.69, 0.729, 0.812, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_lxrqj"]
 _data = {
 "Day": SubResource("Animation_qavjv"),
@@ -140,7 +140,7 @@ environment = SubResource("Environment_35g5c")
 script = ExtResource("1_ntas7")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, -3.61999e-06, 1, 0, -1, -3.61999e-06, 0, 0, 0)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
