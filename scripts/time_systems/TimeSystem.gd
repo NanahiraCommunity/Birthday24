@@ -29,7 +29,6 @@ func _process(delta):
 	if hour == 0 and day_processed == false and time_speed > 0:
 		change_day()
 	
-	
 	if hour > 0:
 		day_processed = false
 	

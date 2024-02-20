@@ -2,12 +2,14 @@ extends CharacterBody3D
 
 @export var static_world_map : GridMap = null
 @export var interactables_map : GridMap = null
+var crop_scene = preload("res://crops/corn_stage_a.tscn")
 
 const SPEED = 2.0
 const JUMP_VELOCITY = 4.5
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
+var last_direction = Vector3(1, 0, 0)
 
 
 func _physics_process(delta):
@@ -24,6 +26,7 @@ func _physics_process(delta):
 	var input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction:
+		last_direction = direction
 		velocity.x = direction.x * SPEED
 		velocity.z = direction.z * SPEED
 	else:
@@ -40,12 +43,27 @@ func _dig():
 		var player_global_pos = self.position
 		var cell_pos = to_global(interactables_map.map_to_local(player_global_pos))
 		var cell_item = interactables_map.get_cell_item(cell_pos)
+		var cell_bases = interactables_map.get_cell_item_basis(cell_pos)
 		var meshes = interactables_map.get_meshes()
 		var mesh_library = interactables_map.mesh_library
-		var item = mesh_library.find_item_by_name("ground_pathOpen2")
+		var item = mesh_library.find_item_by_name("crops_dirtSingle2")
 		player_global_pos.y = cell_pos.y / 2
-		static_world_map.set_cell_item(interactables_map.local_to_map(player_global_pos), -1)
+		#if (last_direction.x == 1):
+			#player_global_pos.x += 1
+		#elif (last_direction.x == -1):
+			#player_global_pos.x -= 1
+		#elif (last_direction.z == 1):
+			#player_global_pos.z += 1
+		#elif (last_direction.z == -1):
+			#player_global_pos.z -= 1
+		#static_world_map.set_cell_item(interactables_map.local_to_map(player_global_pos), -1)
 		interactables_map.set_cell_item(interactables_map.local_to_map(player_global_pos), item)
+		var instance = crop_scene.instantiate()
+		instance.position = player_global_pos
+		#instance.position.x = player_global_pos.x / 2
+		#instance.position.y = player_global_pos.y / 2
+		#instance.position.z = player_global_pos.z / 2
+		interactables_map.add_child(instance)
 
 func _check_interactable():
 	pass
