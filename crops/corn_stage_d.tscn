@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://b7awcrce42vlc"]
+[gd_scene load_steps=7 format=3 uid="uid://b7awcrce42vlc"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jojmd"]
 resource_name = "grass"
@@ -96,9 +96,6 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_vqhop")
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_aj8es"]
-points = PackedVector3Array(-0.152101, 0.428862, -0.0210821, -0.0210821, 0.589394, -0.152101, -0.037519, 0, -0.037519, -0.152101, 0.428862, 0.0210523, -0.152101, 0.928935, -0.0210821, 0.0210523, 0.589394, -0.152101, -0.0210821, 1.17891, -0.152101, 0.0374893, 0, -0.037519, -0.037519, 0, 0.0374893, -0.0210821, 0.678837, 0.152101, -0.152101, 0.928935, 0.0210523, -0.0125064, 1.25, -0.0125064, -0.0432362, 1.15493, -0.0862938, 0.152101, 0.339419, -0.0210821, 0.0210523, 1.17891, -0.152101, 0.0374893, 0, 0.0374893, 0.0210523, 0.678837, 0.152101, -0.0210821, 1.08947, 0.152101, -0.0125064, 1.25, 0.0124766, 0.0124766, 1.25, -0.0125064, 0.152101, 0.339419, 0.0210523, 0.152101, 0.83937, -0.0210821, 0.0432064, 1.15493, -0.0862938, 0.0210523, 1.08947, 0.152101, 0.0124766, 1.25, 0.0124766, 0.152101, 0.83937, 0.0210523)
-
 [node name="Corn_StageD" type="Node3D"]
 
 [node name="crops_cornStageD2" type="Node3D" parent="."]
@@ -129,8 +126,3 @@ skeleton = NodePath("")
 transform = Transform3D(5.96046e-08, 0, 1, 0, 1, 0, -1, 0, 5.96046e-08, 0.220786, 0.987059, 0.1375)
 mesh = SubResource("ArrayMesh_irm8e")
 skeleton = NodePath("")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="crops_cornStageD2/tmpParent/crops_cornStageD"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="crops_cornStageD2/tmpParent/crops_cornStageD/StaticBody3D"]
-shape = SubResource("ConvexPolygonShape3D_aj8es")

@@ -18,7 +18,6 @@ func _ready():
 
 func water():
 	_current_value = !_current_value
-	print_debug("watered")
 
 func is_watered():
 	return _current_value

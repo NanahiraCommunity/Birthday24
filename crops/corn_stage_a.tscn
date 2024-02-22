@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bvg5usbptsqhu"]
+[gd_scene load_steps=7 format=3 uid="uid://bvg5usbptsqhu"]
 
 [ext_resource type="Script" path="res://scripts/farming/StageComponent.gd" id="1_1tekj"]
 [ext_resource type="PackedScene" uid="uid://dny1tuekiioot" path="res://crops/corn_stage_b.tscn" id="2_xhh4l"]
@@ -41,9 +41,6 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_6a4h3")
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_xq303"]
-points = PackedVector3Array(-0.152101, 0.158819, -0.0210841, -0.0375208, 0, -0.0375208, -0.152101, 0.158819, 0.0210497, -0.152101, 0.428935, -0.0210841, -0.0210841, 0.228955, -0.152101, 0.0374864, 0, -0.0375208, -0.0375208, 0, 0.0374864, -0.0210841, 0.228955, 0.152067, -0.152101, 0.428935, 0.0210497, -0.0125085, 0.5, -0.0125085, 0.0210497, 0.228955, -0.152101, 0.152067, 0.158819, -0.0210841, 0.0374864, 0, 0.0374864, 0.0210497, 0.228955, 0.152067, -0.0125085, 0.5, 0.0124741, 0.0124741, 0.5, -0.0125085, 0.152067, 0.339467, -0.0210841, 0.152067, 0.158819, 0.0210497, 0.152067, 0.339467, 0.0210497, 0.0124741, 0.5, 0.0124741)
-
 [node name="Corn_StageA" type="Node3D"]
 
 [node name="crops_cornStageA2" type="Node3D" parent="."]
@@ -54,11 +51,6 @@ points = PackedVector3Array(-0.152101, 0.158819, -0.0210841, -0.0375208, 0, -0.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
 mesh = SubResource("ArrayMesh_valj0")
 skeleton = NodePath("")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="crops_cornStageA2/tmpParent/crops_cornStageA"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="crops_cornStageA2/tmpParent/crops_cornStageA/StaticBody3D"]
-shape = SubResource("ConvexPolygonShape3D_xq303")
 
 [node name="StageComponent" type="Node" parent="."]
 script = ExtResource("1_1tekj")

@@ -17,6 +17,8 @@ const minute_intervals = ["00", "10", "20", "30", "40", "50"]
 @export var time_format = "AM"
 @export var minute_interval = "00"
 
+const stage_amount_on_press = 1.0
+
 const default_time_speed = 5000
 var day_processed = false
 
@@ -63,4 +65,8 @@ func change_day():
 		season = seasons[month - 1]
 	weekday_index = int(day) % 7 - 1
 	weekday = weekdays[weekday_index]
+	
+	for stage_component in get_tree().get_nodes_in_group(StageComponent.group_name):
+		if (stage_component is StageComponent):
+			stage_component.increase_stage(stage_amount_on_press)
 	

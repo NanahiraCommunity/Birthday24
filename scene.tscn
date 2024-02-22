@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://crkwdkx55bn3c"]
+[gd_scene load_steps=9 format=3 uid="uid://crkwdkx55bn3c"]
 
 [ext_resource type="MeshLibrary" uid="uid://dj0ts46jjk2jj" path="res://tiles.tres" id="1_6vof7"]
 [ext_resource type="Script" path="res://Player.gd" id="1_qc0gj"]
 [ext_resource type="PackedScene" uid="uid://qqpws51twfvt" path="res://WorldEnvironment.tscn" id="1_tk37p"]
+[ext_resource type="MeshLibrary" uid="uid://0mgkdtx1xjyl" path="res://new_tiles.tres" id="4_lngv5"]
 [ext_resource type="Script" path="res://scripts/time_systems/TimeHub.gd" id="4_odhhq"]
 [ext_resource type="Script" path="res://scripts/farming/stage_button.gd" id="5_ko821"]
 [ext_resource type="Script" path="res://scripts/farming/water_button.gd" id="6_2mjm6"]
@@ -41,7 +42,7 @@ cell_size = Vector3(1, 0.5, 1)
 metadata/_editor_floor_ = Vector3(0, 0, 0)
 
 [node name="Interactables" type="GridMap" parent="."]
-mesh_library = ExtResource("1_6vof7")
+mesh_library = ExtResource("4_lngv5")
 cell_size = Vector3(1, 0.5, 1)
 metadata/_editor_floor_ = Vector3(0, 0, 0)
 
@@ -75,12 +76,13 @@ offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("4_odhhq")
 
-[node name="Button" type="Button" parent="CanvasLayer"]
+[node name="Button" type="Button" parent="CanvasLayer" node_paths=PackedStringArray("interactables_map")]
 offset_left = 168.0
 offset_right = 232.0
 offset_bottom = 31.0
 text = "+ Stage"
 script = ExtResource("5_ko821")
+interactables_map = NodePath("../../Interactables")
 
 [node name="Button2" type="Button" parent="CanvasLayer"]
 offset_left = 240.0

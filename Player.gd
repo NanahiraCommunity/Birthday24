@@ -46,7 +46,7 @@ func _dig():
 		var cell_bases = interactables_map.get_cell_item_basis(cell_pos)
 		var meshes = interactables_map.get_meshes()
 		var mesh_library = interactables_map.mesh_library
-		var item = mesh_library.find_item_by_name("crops_dirtSingle2")
+		var item = mesh_library.find_item_by_name("crops_cornStageA2")
 		player_global_pos.y = cell_pos.y / 2
 		#if (last_direction.x == 1):
 			#player_global_pos.x += 1
@@ -57,7 +57,7 @@ func _dig():
 		#elif (last_direction.z == -1):
 			#player_global_pos.z -= 1
 		#static_world_map.set_cell_item(interactables_map.local_to_map(player_global_pos), -1)
-		interactables_map.set_cell_item(interactables_map.local_to_map(player_global_pos), item)
+		#interactables_map.set_cell_item(interactables_map.local_to_map(player_global_pos), item)
 		var instance = crop_scene.instantiate()
 		instance.position = player_global_pos
 		#instance.position.x = player_global_pos.x / 2
