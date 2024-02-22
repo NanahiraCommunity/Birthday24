@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://crkwdkx55bn3c"]
+[gd_scene load_steps=10 format=3 uid="uid://crkwdkx55bn3c"]
 
 [ext_resource type="MeshLibrary" uid="uid://dj0ts46jjk2jj" path="res://tiles.tres" id="1_6vof7"]
 [ext_resource type="Script" path="res://Player.gd" id="1_qc0gj"]
@@ -7,6 +7,10 @@
 [ext_resource type="Script" path="res://scripts/time_systems/TimeHub.gd" id="4_odhhq"]
 [ext_resource type="Script" path="res://scripts/farming/stage_button.gd" id="5_ko821"]
 [ext_resource type="Script" path="res://scripts/farming/water_button.gd" id="6_2mjm6"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_o7evr"]
+radius = 0.2
+height = 1.0
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wq805"]
 radius = 0.25
@@ -22,6 +26,11 @@ script = ExtResource("1_qc0gj")
 static_world_map = NodePath("../StaticWorld")
 interactables_map = NodePath("../Interactables")
 
+[node name="Area3D" type="Area3D" parent="CharacterBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D/Area3D"]
+shape = SubResource("CapsuleShape3D_o7evr")
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
 shape = SubResource("CapsuleShape3D_wq805")
 
@@ -31,6 +40,26 @@ size = Vector3(0.2, 0.5, 0.2)
 [node name="Camera3D" type="Camera3D" parent="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 0.819152, 0.573576, 0, -0.573576, 0.819152, 0, 10.286, 14.977)
 fov = 10.0
+
+[node name="RCDown" type="RayCast3D" parent="CharacterBody3D"]
+target_position = Vector3(0, 0, 0.3)
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="RCUp" type="RayCast3D" parent="CharacterBody3D"]
+target_position = Vector3(0, 0, -0.3)
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="RCRight" type="RayCast3D" parent="CharacterBody3D"]
+target_position = Vector3(0.3, 0, 0)
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="RCLeft" type="RayCast3D" parent="CharacterBody3D"]
+target_position = Vector3(-0.3, 0, 0)
+collide_with_areas = true
+collide_with_bodies = false
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.707107, 0.704416, -0.0616285, 0, 0.0871558, 0.996195, 0.707107, -0.704416, 0.0616285, 0, 0, 0)

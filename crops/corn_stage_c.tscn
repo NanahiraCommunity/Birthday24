@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cyqau54koxyjy"]
+[gd_scene load_steps=8 format=3 uid="uid://cyqau54koxyjy"]
 
 [ext_resource type="Script" path="res://scripts/farming/StageComponent.gd" id="1_xu7y5"]
 [ext_resource type="PackedScene" uid="uid://b7awcrce42vlc" path="res://crops/corn_stage_d.tscn" id="2_f2xuq"]
@@ -41,6 +41,10 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_7caph")
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8lp6v"]
+radius = 0.3
+height = 1.0
+
 [node name="Corn_StageC" type="Node3D"]
 
 [node name="crops_cornStageC2" type="Node3D" parent="."]
@@ -58,3 +62,9 @@ next_scene = ExtResource("2_f2xuq")
 
 [node name="WaterComponent" type="Node" parent="."]
 script = ExtResource("3_a487h")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
+shape = SubResource("CapsuleShape3D_8lp6v")
