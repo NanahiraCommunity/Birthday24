@@ -1,23 +1,25 @@
-[gd_scene load_steps=12 format=3 uid="uid://qqpws51twfvt"]
+[gd_scene load_steps=11 format=3 uid="uid://qqpws51twfvt"]
 
 [ext_resource type="Script" path="res://scripts/time_systems/DayNight.gd" id="1_ntas7"]
+[ext_resource type="Shader" path="res://WorldEnvironment.gdshader" id="1_tj0a4"]
 
-[sub_resource type="Gradient" id="Gradient_xpqfr"]
-colors = PackedColorArray(0, 0, 0.533333, 1, 0, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_q8jbk"]
-gradient = SubResource("Gradient_xpqfr")
-fill_from = Vector2(1, 0.56044)
-
-[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_fpwyt"]
-night_sky = SubResource("GradientTexture2D_q8jbk")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pvtor"]
+shader = ExtResource("1_tj0a4")
+shader_parameter/skyDayColor = Color(0.592157, 0.72549, 1, 1)
+shader_parameter/horizonDayColor = Color(0.458824, 0.631373, 1, 1)
+shader_parameter/skyNightColor = Color(0, 0, 0.831373, 1)
+shader_parameter/horizonNightColor = Color(0, 0, 0.6, 1)
+shader_parameter/topSunRiseSet = Color(1, 0.662745, 0.964706, 1)
+shader_parameter/horizonSunRiseSet = Color(1, 0.662745, 0.356863, 1)
 
 [sub_resource type="Sky" id="Sky_mhx4g"]
-sky_material = SubResource("PhysicalSkyMaterial_fpwyt")
+sky_material = SubResource("ShaderMaterial_pvtor")
 
 [sub_resource type="Environment" id="Environment_35g5c"]
 background_mode = 2
 sky = SubResource("Sky_mhx4g")
+ambient_light_source = 3
+reflected_light_source = 2
 
 [sub_resource type="Animation" id="Animation_qavjv"]
 resource_name = "Day"
@@ -44,6 +46,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(0.69, 0.729, 0.812, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:environment:sky:sky_material:shader_parameter/skyColor")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.203922, 0.65098, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_6r3wp"]
@@ -125,6 +139,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(0.69, 0.729, 0.812, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:environment:sky:sky_material:shader_parameter/skyColor")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.203922, 0.65098, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_lxrqj"]
