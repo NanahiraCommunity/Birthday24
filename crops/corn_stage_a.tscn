@@ -59,6 +59,7 @@ skeleton = NodePath("")
 [node name="StageComponent" type="Node" parent="."]
 script = ExtResource("1_1tekj")
 next_scene = ExtResource("2_xhh4l")
+next_stage = "crops_cornStageB2"
 
 [node name="WaterComponent" type="Node" parent="."]
 script = ExtResource("3_j0imo")

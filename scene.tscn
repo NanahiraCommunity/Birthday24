@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://crkwdkx55bn3c"]
+[gd_scene load_steps=11 format=3 uid="uid://crkwdkx55bn3c"]
 
 [ext_resource type="MeshLibrary" uid="uid://dj0ts46jjk2jj" path="res://tiles.tres" id="1_6vof7"]
 [ext_resource type="Script" path="res://Player.gd" id="1_qc0gj"]
@@ -7,9 +7,9 @@
 [ext_resource type="Script" path="res://scripts/time_systems/TimeHub.gd" id="4_odhhq"]
 [ext_resource type="Script" path="res://scripts/farming/stage_button.gd" id="5_ko821"]
 [ext_resource type="Script" path="res://scripts/farming/water_button.gd" id="6_2mjm6"]
+[ext_resource type="Script" path="res://scripts/ui/DebugUI.gd" id="6_jkaiv"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_o7evr"]
-radius = 0.2
 height = 1.0
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wq805"]
@@ -79,7 +79,9 @@ metadata/_editor_floor_ = Vector3(0, 0, 0)
 worldmap = NodePath("../StaticWorld")
 interactables = NodePath("../Interactables")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." node_paths=PackedStringArray("ui_layer")]
+script = ExtResource("6_jkaiv")
+ui_layer = NodePath("DebugUI")
 
 [node name="weekdayLabel" type="Label" parent="CanvasLayer"]
 offset_right = 40.0
@@ -105,17 +107,29 @@ offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("4_odhhq")
 
-[node name="Button" type="Button" parent="CanvasLayer" node_paths=PackedStringArray("interactables_map")]
+[node name="DebugUI" type="Control" parent="CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Button" type="Button" parent="CanvasLayer/DebugUI" node_paths=PackedStringArray("interactables_map")]
+layout_mode = 0
 offset_left = 168.0
 offset_right = 232.0
 offset_bottom = 31.0
 text = "+ Stage"
 script = ExtResource("5_ko821")
-interactables_map = NodePath("../../Interactables")
+interactables_map = NodePath("../../../Interactables")
 
-[node name="Button2" type="Button" parent="CanvasLayer"]
+[node name="Button2" type="Button" parent="CanvasLayer/DebugUI"]
+layout_mode = 0
 offset_left = 240.0
 offset_right = 304.0
 offset_bottom = 31.0
 text = "Water"
 script = ExtResource("6_2mjm6")
+
+[connection signal="area_entered" from="CharacterBody3D/Area3D" to="CharacterBody3D" method="_on_area_3d_area_entered"]
+[connection signal="area_exited" from="CharacterBody3D/Area3D" to="CharacterBody3D" method="_on_area_3d_area_exited"]

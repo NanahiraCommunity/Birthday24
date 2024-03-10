@@ -17,24 +17,26 @@ var last_direction = Vector3(1, 0, 0)
 @onready var raycast_left : RayCast3D = $RCLeft
 
 var can_place : bool = true
+var can_water : bool = false
+var water_component : WaterComponent = null
 
 func _physics_process(delta):
-	if (raycast_down.is_colliding() || raycast_up.is_colliding() || raycast_right.is_colliding() || raycast_left.is_colliding()):
-		can_place = false
-	else:
-		can_place = true
+	#if (raycast_down.is_colliding() || raycast_up.is_colliding() || raycast_right.is_colliding() || raycast_left.is_colliding()):
+		#can_place = false
+	#else:
+		#can_place = true
 		
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y -= gravity * delta
 
 	# Handle jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+	if Input.is_action_just_pressed("player_jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
-	var input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+	var input_dir = Input.get_vector("player_left", "player_right", "player_up", "player_down")
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction:
 		last_direction = direction
@@ -46,40 +48,38 @@ func _physics_process(delta):
 
 	move_and_slide()
 	
-	if (Input.is_action_just_pressed("interact") && is_on_floor() && can_place):
-		_place_crop()
+	if (Input.is_action_just_pressed("interact") && is_on_floor()):
+		if can_place:
+			_place_crop()
+		elif can_water:
+			_water_crop()
 
 func _place_crop():
-	if (interactables_map != null && static_world_map != null):
-		var player_global_pos = self.position
-		var cell_pos = to_global(interactables_map.map_to_local(player_global_pos))
-		var cell_item = interactables_map.get_cell_item(cell_pos)
-		var cell_bases = interactables_map.get_cell_item_basis(cell_pos)
-		var meshes = interactables_map.get_meshes()
-		var mesh_library = interactables_map.mesh_library
-		var item = mesh_library.find_item_by_name("crops_cornStageA2")
-		player_global_pos.y = cell_pos.y / 2
-		if (last_direction.x == 1):
-			player_global_pos.x += 0.5
-			
-		elif (last_direction.x == -1):
-			player_global_pos.x -= 0.5
-		elif (last_direction.z == 1):
-			player_global_pos.z += 0.5
-		elif (last_direction.z == -1):
-			player_global_pos.z -= 0.5
-		#static_world_map.set_cell_item(interactables_map.local_to_map(player_global_pos), -1)
-		#interactables_map.set_cell_item(interactables_map.local_to_map(player_global_pos), item)
-		var instance = crop_scene.instantiate()
-		instance.position = player_global_pos
-		#instance.position.x = player_global_pos.x / 2
-		#instance.position.y = player_global_pos.y / 2
-		#instance.position.z = player_global_pos.z / 2
-		interactables_map.add_child(instance)
-		print("placed")
-		
+	can_place = false
+	if (interactables_map != null):
+		var cell_pos = interactables_map.to_global(self.position)
+		var crop_corn = crop_scene.instantiate()
+		crop_corn.global_position = cell_pos
+		interactables_map.set_cell_item(interactables_map.local_to_map(to_local(cell_pos)), -1)
+		interactables_map.add_child(crop_corn)
+
+func _water_crop():
+	# check if a crop is in front of the player
+	# ideally, this should be the cell in front of the player
+	# water crop
+	water_component.water()
+	can_water = false
 		
 
-func _check_interactable():
-	pass
-		
+
+func _on_area_3d_area_entered(area):
+	var owner = area.owner
+	var child = owner.get_node("WaterComponent")
+	if child.is_in_group(WaterComponent.group_name):
+		can_water = true
+		can_place = false
+		water_component = child
+
+func _on_area_3d_area_exited(area):
+	can_place = true
+	can_water = false

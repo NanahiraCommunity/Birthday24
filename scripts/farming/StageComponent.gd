@@ -28,6 +28,7 @@ var _current_stage = 0.0:
 
 @export var stage_threshold = 1.0
 @export var next_scene : PackedScene
+@export var next_stage = ""
 var _threshold_reached = false
 
 static var group_name = "StageComponent"
