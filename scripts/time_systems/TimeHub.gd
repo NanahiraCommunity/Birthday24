@@ -1,7 +1,7 @@
 extends Control
-@onready var weekday_label = $"../weekdayLabel"
-@onready var time_label = $"../timeLabel"
-@onready var day_label = $"../dayLabel"
+@onready var weekday_label = $"../Panel/weekdayLabel"
+@onready var time_label = $"../Panel/timeLabel"
+@onready var day_label = $"../Panel/dayLabel"
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

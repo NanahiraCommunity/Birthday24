@@ -45,7 +45,9 @@ shadow_mesh = SubResource("ArrayMesh_81w5a")
 radius = 0.3
 height = 1.0
 
-[node name="Corn_StageB" type="Node3D"]
+[node name="Corn_StageB" type="StaticBody3D" groups=["crop"]]
+collision_layer = 5
+collision_mask = 0
 
 [node name="crops_cornStageB2" type="Node3D" parent="."]
 
@@ -66,5 +68,9 @@ script = ExtResource("3_yw500")
 [node name="Area3D" type="Area3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
+shape = SubResource("CapsuleShape3D_inrtk")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
 shape = SubResource("CapsuleShape3D_inrtk")
