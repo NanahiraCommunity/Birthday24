@@ -1,16 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://crkwdkx55bn3c"]
+[gd_scene load_steps=6 format=3 uid="uid://crkwdkx55bn3c"]
 
 [ext_resource type="MeshLibrary" uid="uid://dj0ts46jjk2jj" path="res://tiles.tres" id="1_6vof7"]
-[ext_resource type="Script" path="res://sandbox/main.gd" id="1_cvgv4"]
-[ext_resource type="PackedScene" uid="uid://c8u2scdmvbow" path="res://player/player_r.tscn" id="1_s4jnq"]
-[ext_resource type="PackedScene" uid="uid://qqpws51twfvt" path="res://WorldEnvironment.tscn" id="1_tk37p"]
+[ext_resource type="Script" path="res://scenes/sandbox/main.gd" id="1_cvgv4"]
+[ext_resource type="PackedScene" uid="uid://qqpws51twfvt" path="res://environments/world_environment.tscn" id="1_tk37p"]
 [ext_resource type="MeshLibrary" uid="uid://bkjcmax2yoxrh" path="res://new_tiles.tres" id="4_lngv5"]
-[ext_resource type="Script" path="res://scripts/time_systems/TimeHub.gd" id="4_odhhq"]
 [ext_resource type="PackedScene" uid="uid://cwhd3x6fyj7h6" path="res://player_old.tscn" id="4_tckgh"]
-[ext_resource type="Script" path="res://scripts/farming/stage_button.gd" id="5_ko821"]
-[ext_resource type="Script" path="res://scripts/farming/water_button.gd" id="6_2mjm6"]
-[ext_resource type="Script" path="res://scripts/ui/DebugUI.gd" id="6_jkaiv"]
-[ext_resource type="PackedScene" uid="uid://bd4c1h30e015d" path="res://ui/ui.tscn" id="11_n24an"]
 
 [node name="Scene" type="Node3D"]
 script = ExtResource("1_cvgv4")
@@ -21,10 +15,9 @@ script = ExtResource("1_cvgv4")
 transform = Transform3D(0.707107, 0.704416, -0.0616285, 0, 0.0871558, 0.996195, 0.707107, -0.704416, 0.0616285, 0, 0, 0)
 shadow_enabled = true
 
-[node name="Player" parent="." instance=ExtResource("1_s4jnq")]
-visible = false
-
-[node name="CharacterBody3D" parent="." instance=ExtResource("4_tckgh")]
+[node name="CharacterBody3D" parent="." node_paths=PackedStringArray("static_world_map", "interactables_map") instance=ExtResource("4_tckgh")]
+static_world_map = NodePath("../StaticWorld")
+interactables_map = NodePath("../Interactables")
 
 [node name="StaticWorld" type="GridMap" parent="."]
 mesh_library = ExtResource("1_6vof7")
@@ -39,59 +32,3 @@ metadata/_editor_floor_ = Vector3(0, 0, 0)
 [node name="WorldGen" type="WorldGen" parent="." node_paths=PackedStringArray("worldmap", "interactables")]
 worldmap = NodePath("../StaticWorld")
 interactables = NodePath("../Interactables")
-
-[node name="CanvasLayer" type="CanvasLayer" parent="." node_paths=PackedStringArray("ui_layer")]
-script = ExtResource("6_jkaiv")
-ui_layer = NodePath("DebugUI")
-
-[node name="weekdayLabel" type="Label" parent="CanvasLayer"]
-offset_right = 40.0
-offset_bottom = 23.0
-text = "Sun"
-
-[node name="timeLabel" type="Label" parent="CanvasLayer"]
-offset_top = 40.0
-offset_right = 40.0
-offset_bottom = 63.0
-text = "0"
-
-[node name="dayLabel" type="Label" parent="CanvasLayer"]
-offset_left = 56.0
-offset_right = 96.0
-offset_bottom = 23.0
-text = "0"
-
-[node name="Control" type="Control" parent="CanvasLayer"]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("4_odhhq")
-
-[node name="DebugUI" type="Control" parent="CanvasLayer"]
-visible = false
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="Button" type="Button" parent="CanvasLayer/DebugUI" node_paths=PackedStringArray("interactables_map")]
-layout_mode = 0
-offset_left = 168.0
-offset_right = 232.0
-offset_bottom = 31.0
-text = "+ Stage"
-script = ExtResource("5_ko821")
-interactables_map = NodePath("../../../Interactables")
-
-[node name="Button2" type="Button" parent="CanvasLayer/DebugUI"]
-layout_mode = 0
-offset_left = 240.0
-offset_right = 304.0
-offset_bottom = 31.0
-text = "Water"
-script = ExtResource("6_2mjm6")
-
-[node name="UI" parent="." instance=ExtResource("11_n24an")]
-
-[editable path="UI"]

@@ -6,6 +6,11 @@ var selected_item = null
 var selected_item_index = 0
 var can_place_crop = true
 
+enum CropType {
+	CORN,
+	CARROT,
+}
+
 func use_slot_data(slot_data: SlotData) -> void:
 	slot_data.item_data.use(player)
 	player.interact()

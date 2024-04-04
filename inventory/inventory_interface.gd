@@ -69,7 +69,6 @@ func update_grabbed_slot() -> void:
 	else:
 		grabbed_slot.hide()
 
-
 func _on_gui_input(event) -> void:
 	if event is InputEventMouseButton \
 			and event.is_pressed() \
@@ -84,7 +83,6 @@ func _on_gui_input(event) -> void:
 					grabbed_slot_data = null
 		
 		update_grabbed_slot()
-
 
 func _on_visibility_changed() -> void:
 	if not visible and grabbed_slot_data:

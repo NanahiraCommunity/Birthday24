@@ -12,9 +12,6 @@ func _ready() -> void:
 	set_selected_slot(PlayerManager.selected_item_index)
 
 func set_selected_slot(index: int) -> void:
-	#var children = get_tree().get_nodes_in_group("hotbar_slots")[0].get_children()
-	#for _slot in children:
-		#print(_slot)
 	if index == get_index():
 		color_rect.show()
 	else:
@@ -30,7 +27,6 @@ func set_slot_data(slot_data: SlotData) -> void:
 		quantity_label.show()
 	else:
 		quantity_label.hide()
-
 
 func _on_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton \

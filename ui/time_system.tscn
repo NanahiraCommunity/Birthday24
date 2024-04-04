@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://b3ebjtfjk0yae"]
 
-[ext_resource type="Script" path="res://scripts/ui/DebugUI.gd" id="1_h6m6d"]
-[ext_resource type="Script" path="res://scripts/time_systems/TimeHub.gd" id="2_kjm0b"]
-[ext_resource type="Script" path="res://scripts/farming/stage_button.gd" id="3_ruoao"]
-[ext_resource type="Script" path="res://scripts/farming/water_button.gd" id="4_nljan"]
+[ext_resource type="Script" path="res://ui/debug/debug_ui.gd" id="1_h6m6d"]
+[ext_resource type="Script" path="res://ui/time_hub.gd" id="2_kjm0b"]
+[ext_resource type="Script" path="res://ui/debug/stage_button.gd" id="3_ruoao"]
+[ext_resource type="Script" path="res://ui/debug/water_button.gd" id="4_nljan"]
 
 [node name="TimeSystem" type="Control"]
 self_modulate = Color(1, 1, 1, 0)

@@ -17,7 +17,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-TimeSystem="*res://scripts/time_systems/TimeSystem.gd"
+TimeSystem="*res://ui/time_system.gd"
 PlayerManager="*res://player/player_manager.gd"
 
 [input]

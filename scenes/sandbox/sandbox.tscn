@@ -1,0 +1,63 @@
+[gd_scene load_steps=15 format=3 uid="uid://bo280ef6e60vm"]
+
+[ext_resource type="Script" path="res://scenes/sandbox/main.gd" id="1_8ggof"]
+[ext_resource type="PackedScene" uid="uid://qqpws51twfvt" path="res://environments/world_environment.tscn" id="1_r1w23"]
+[ext_resource type="PackedScene" uid="uid://ckk1gspsh3pnx" path="res://player/player.tscn" id="2_2gdw0"]
+[ext_resource type="MeshLibrary" uid="uid://dj0ts46jjk2jj" path="res://tiles.tres" id="3_05o8r"]
+[ext_resource type="MeshLibrary" uid="uid://bkjcmax2yoxrh" path="res://new_tiles.tres" id="4_o7cqf"]
+[ext_resource type="Resource" uid="uid://dug2a44q5v0r5" path="res://player/inventory.tres" id="5_sjsk7"]
+[ext_resource type="Resource" uid="uid://dgorhoqth3h4o" path="res://player/equip_inventory.tres" id="6_yolv6"]
+[ext_resource type="PackedScene" uid="uid://84l2wcqakw1l" path="res://interactables/chests/chest.tscn" id="7_uraes"]
+[ext_resource type="Script" path="res://inventory/inventory_data.gd" id="8_lqde1"]
+[ext_resource type="Resource" uid="uid://bckr5msfq0iv8" path="res://inventory/resources/data/corn.tres" id="9_17v47"]
+[ext_resource type="Script" path="res://inventory/slot_data.gd" id="10_mef3b"]
+[ext_resource type="PackedScene" uid="uid://bd4c1h30e015d" path="res://ui/ui.tscn" id="13_i24o6"]
+
+[sub_resource type="Resource" id="Resource_ybfd1"]
+script = ExtResource("10_mef3b")
+item_data = ExtResource("9_17v47")
+quantity = 1
+
+[sub_resource type="Resource" id="Resource_8reg5"]
+script = ExtResource("8_lqde1")
+slot_datas = Array[ExtResource("10_mef3b")]([SubResource("Resource_ybfd1"), null, null, null, null, null])
+
+[node name="Sandbox" type="Node3D"]
+script = ExtResource("1_8ggof")
+
+[node name="WorldEnvironment" parent="." instance=ExtResource("1_r1w23")]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.707107, 0.704416, -0.0616285, 0, 0.0871558, 0.996195, 0.707107, -0.704416, 0.0616285, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Player" parent="." node_paths=PackedStringArray("static_world_map", "interactables_map") instance=ExtResource("2_2gdw0")]
+inventory_data = ExtResource("5_sjsk7")
+equip_inventory_data = ExtResource("6_yolv6")
+static_world_map = NodePath("../StaticWorld")
+interactables_map = NodePath("../Interactables")
+
+[node name="Chest" parent="." instance=ExtResource("7_uraes")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.166, 1, -0.4)
+inventory_data = SubResource("Resource_8reg5")
+
+[node name="StaticWorld" type="GridMap" parent="." groups=["world"]]
+mesh_library = ExtResource("3_05o8r")
+cell_size = Vector3(1, 0.5, 1)
+metadata/_editor_floor_ = Vector3(0, 0, 0)
+
+[node name="Interactables" type="GridMap" parent="." groups=["world"]]
+mesh_library = ExtResource("4_o7cqf")
+cell_size = Vector3(1, 0.5, 1)
+metadata/_editor_floor_ = Vector3(0, 0, 0)
+
+[node name="WorldGen" type="WorldGen" parent="." node_paths=PackedStringArray("worldmap", "interactables")]
+worldmap = NodePath("../StaticWorld")
+interactables = NodePath("../Interactables")
+
+[node name="UI" parent="." instance=ExtResource("13_i24o6")]
+
+[connection signal="drop_slot_data" from="UI/Inventory/InventoryInterface" to="." method="_on_inventory_interface_drop_slot_data"]
+
+[editable path="UI"]
+[editable path="UI/Inventory/TimeSystem"]
