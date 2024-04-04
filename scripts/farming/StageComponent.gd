@@ -9,6 +9,7 @@ signal stage_threshold_reached(new_scene: Node3D)
 ## When set, is the scene that will be replaced with next_scene.
 ## Otherwise the direct parent will be used
 @export var target: Node3D
+@export var last_stage : bool = false
 var _current_stage = 0.0:
 	set(value):
 		if (_current_stage != value):
@@ -17,6 +18,9 @@ var _current_stage = 0.0:
 			emit_signal("stage_changed", _current_stage, last_stage)
 			
 			if (_current_stage >= stage_threshold && _threshold_reached != true):
+				if last_stage:
+					target.queue_free()
+					
 				var new_scene : Node3D
 				
 				if (next_scene != null):
@@ -29,6 +33,7 @@ var _current_stage = 0.0:
 @export var stage_threshold = 1.0
 @export var next_scene : PackedScene
 @export var next_stage = ""
+
 var _threshold_reached = false
 
 static var group_name = "StageComponent"
@@ -48,5 +53,5 @@ func _create_next_scene() -> Node3D:
 	return instance
 
 func increase_stage(value: float):
-	if (water_component.is_watered()):
+	if (last_stage or water_component.is_watered()):
 		_current_stage += value

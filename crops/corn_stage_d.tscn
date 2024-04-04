@@ -1,4 +1,14 @@
-[gd_scene load_steps=8 format=3 uid="uid://b7awcrce42vlc"]
+[gd_scene load_steps=13 format=3 uid="uid://b7awcrce42vlc"]
+
+[ext_resource type="Script" path="res://crops/harvest_crop.gd" id="1_bxwcn"]
+[ext_resource type="Script" path="res://scripts/farming/StageComponent.gd" id="1_pvw18"]
+[ext_resource type="Resource" uid="uid://bckr5msfq0iv8" path="res://items/data/corn.tres" id="2_fyv1h"]
+[ext_resource type="Script" path="res://inventory/slot_data.gd" id="3_lhmp7"]
+
+[sub_resource type="Resource" id="Resource_scoh1"]
+script = ExtResource("3_lhmp7")
+item_data = ExtResource("2_fyv1h")
+quantity = 6
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jojmd"]
 resource_name = "grass"
@@ -100,9 +110,11 @@ shadow_mesh = SubResource("ArrayMesh_vqhop")
 radius = 0.3
 height = 1.0
 
-[node name="Corn_StageD" type="StaticBody3D" groups=["crop"]]
+[node name="Corn_StageD" type="StaticBody3D" groups=["crop", "harvestable"]]
 collision_layer = 5
 collision_mask = 0
+script = ExtResource("1_bxwcn")
+drop = SubResource("Resource_scoh1")
 
 [node name="crops_cornStageD2" type="Node3D" parent="."]
 
@@ -142,3 +154,8 @@ shape = SubResource("CapsuleShape3D_3so51")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
 shape = SubResource("CapsuleShape3D_3so51")
+
+[node name="StageComponent" type="Node" parent="."]
+script = ExtResource("1_pvw18")
+last_stage = true
+stage_threshold = 2.0

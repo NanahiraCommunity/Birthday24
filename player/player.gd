@@ -88,10 +88,9 @@ func _unhandled_input(event: InputEvent) -> void:
 		interact()
 
 func interact() -> void:
-	print("interacting")
 	if interact_ray.is_colliding():
 		var body = interact_ray.get_collider()
-		if body.is_in_group("external inventory"):
+		if body.is_in_group("external_inventory") or body.is_in_group("harvestable"):
 			interact_ray.get_collider().player_interact()
 
 func get_drop_position() -> Vector3:
