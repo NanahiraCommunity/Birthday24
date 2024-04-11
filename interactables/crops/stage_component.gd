@@ -10,6 +10,8 @@ signal stage_threshold_reached(new_scene: Node3D)
 ## Otherwise the direct parent will be used
 @export var target: Node3D
 @export var last_stage : bool = false
+@export var renewable : bool = false
+
 var _current_stage = 0.0:
 	set(value):
 		if (_current_stage != value):
@@ -18,7 +20,7 @@ var _current_stage = 0.0:
 			emit_signal("stage_changed", _current_stage, last_stage)
 			
 			if (_current_stage >= stage_threshold && _threshold_reached != true):
-				if last_stage:
+				if last_stage and !renewable:
 					target.queue_free()
 					
 				var new_scene : Node3D

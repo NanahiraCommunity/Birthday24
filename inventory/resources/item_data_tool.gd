@@ -12,3 +12,5 @@ enum ToolType {
 func use(target) -> void:
 	if tool_type == ToolType.PAIL:
 		target.water_crop()
+	if tool_type == ToolType.HOE:
+		target.till_land()

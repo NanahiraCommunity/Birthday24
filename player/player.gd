@@ -8,7 +8,7 @@ signal toggle_inventory()
 @export var inventory_data: InventoryData
 @export var equip_inventory_data: InventoryDataEquip
 
-@export var static_world_map : GridMap = null
+#@export var static_world_map : GridMap = null
 @export var interactables_map : GridMap = null
 
 @export var equipped = {}
@@ -26,16 +26,20 @@ var defence: int = 5
 var can_place : bool = true
 var can_water : bool = false
 var water_component : WaterComponent = null
-var crop_corn = preload("res://interactables/crops/corn/corn_stage_a.tscn")
+var crop_mound = preload("res://interactables/crops/crop_mound.tscn")
+
+var body
 
 func _ready() -> void:
 	PlayerManager.player = self
 
 func _physics_process(delta: float) -> void:
 	if interact_ray.is_colliding():
-		PlayerManager.can_place_crop = false
+		var body = interact_ray.get_collider()
+		if body and body.is_in_group("tilled_land"):
+			PlayerManager.can_place_crop = true
 	else:
-		PlayerManager.can_place_crop = true
+		PlayerManager.can_place_crop = false
 		
 	# Add the gravity.
 	if not is_on_floor():
@@ -79,7 +83,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func interact() -> void:
 	if interact_ray.is_colliding():
-		var body = interact_ray.get_collider()
+		body = interact_ray.get_collider()
 		if body.is_in_group("external_inventory") or body.is_in_group("harvestable"):
 			interact_ray.get_collider().player_interact()
 
@@ -96,24 +100,25 @@ func increase_def(def_value: int, name: String) -> void:
 		for items in equipped:
 			defence += equipped[items]
 
-func place_crop(crop_type: PlayerManager.CropType) -> void:
-	can_place = false
+func till_land() -> void:
 	if (interactables_map != null):
-		var cell_pos = interactables_map.to_global(self.position)
-		var crop = null
-		if crop_type == PlayerManager.CropType.CORN:
-			crop = crop_corn.instantiate()
-		if crop_type == PlayerManager.CropType.CARROT:
-			print("CARROT")
-			return
-		crop.global_position = cell_pos
-		crop.position.y = 1
-		interactables_map.set_cell_item(interactables_map.local_to_map(to_local(cell_pos)), -1)
+		var map_pos = interactables_map.local_to_map(self.position)
+		var cell_pos = interactables_map.map_to_local(map_pos)
+		var crop = crop_mound.instantiate()
+		crop.global_position = interactables_map.to_global(cell_pos * interactables_map.cell_size)
 		interactables_map.add_child(crop)
+
+func place_crop(crop_type: PlayerManager.CropType) -> void:
+	if interact_ray.is_colliding():
+		body = interact_ray.get_collider()
+		if (interactables_map != null):
+			if body.is_in_group("tilled_land"):
+				body.place_crop(interactables_map, crop_type)
+				PlayerManager.can_place_crop = false
 
 func water_crop() -> void:
 	if interact_ray.is_colliding():
-		var body = interact_ray.get_collider()
+		body = interact_ray.get_collider()
 		if body.is_in_group("crop"):
 			for child in body.get_children():
 				if child is WaterComponent:

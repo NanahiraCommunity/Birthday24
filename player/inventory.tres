@@ -1,10 +1,11 @@
-[gd_resource type="Resource" script_class="InventoryData" load_steps=9 format=3 uid="uid://dug2a44q5v0r5"]
+[gd_resource type="Resource" script_class="InventoryData" load_steps=11 format=3 uid="uid://dug2a44q5v0r5"]
 
 [ext_resource type="Script" path="res://inventory/inventory_data.gd" id="1_1uhqc"]
 [ext_resource type="Resource" uid="uid://bckr5msfq0iv8" path="res://inventory/resources/data/corn.tres" id="2_j3iv8"]
 [ext_resource type="Script" path="res://inventory/slot_data.gd" id="3_ngbyj"]
 [ext_resource type="Resource" uid="uid://cms5oxmuoojsl" path="res://inventory/resources/data/tools/pail.tres" id="4_awujm"]
 [ext_resource type="Resource" uid="uid://d4mubojn6pbux" path="res://inventory/resources/data/seeds/corn_seeds.tres" id="5_60iib"]
+[ext_resource type="Resource" uid="uid://birp4cxfp65qe" path="res://inventory/resources/data/tools/hoe.tres" id="6_q5m16"]
 
 [sub_resource type="Resource" id="Resource_ise13"]
 script = ExtResource("3_ngbyj")
@@ -19,8 +20,13 @@ quantity = 1
 [sub_resource type="Resource" id="Resource_05am0"]
 script = ExtResource("3_ngbyj")
 item_data = ExtResource("5_60iib")
-quantity = 4
+quantity = 40
+
+[sub_resource type="Resource" id="Resource_ajpkq"]
+script = ExtResource("3_ngbyj")
+item_data = ExtResource("6_q5m16")
+quantity = 1
 
 [resource]
 script = ExtResource("1_1uhqc")
-slot_datas = Array[ExtResource("3_ngbyj")]([SubResource("Resource_ise13"), SubResource("Resource_s6kfo"), SubResource("Resource_05am0"), null, null, null, null, null, null, null, null, null, null, null, null, null, null, null])
+slot_datas = Array[ExtResource("3_ngbyj")]([SubResource("Resource_ise13"), SubResource("Resource_s6kfo"), SubResource("Resource_05am0"), SubResource("Resource_ajpkq"), null, null, null, null, null, null, null, null, null, null, null, null, null, null])

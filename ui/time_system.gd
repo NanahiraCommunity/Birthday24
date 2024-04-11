@@ -19,7 +19,7 @@ const minute_intervals = ["00", "10", "20", "30", "40", "50"]
 
 const stage_amount_on_press = 1.0
 
-const default_time_speed = 5000
+const default_time_speed = 500
 var day_processed = false
 
 var time_speed = 80

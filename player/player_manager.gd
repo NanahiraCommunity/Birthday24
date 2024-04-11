@@ -4,7 +4,7 @@ var player
 
 var selected_item = null
 var selected_item_index = 0
-var can_place_crop = true
+var can_place_crop = false
 
 enum CropType {
 	CORN,

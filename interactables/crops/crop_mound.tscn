@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://byoffgbm7tidr"]
+
+[ext_resource type="PackedScene" uid="uid://bh5ag1fhl4fue" path="res://assets/kenney/nature/ground_pathTile.glb" id="1_kioc6"]
+[ext_resource type="Script" path="res://interactables/crops/crop_mound.gd" id="1_wssmq"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ttlnw"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ms60u"]
+radius = 0.3
+height = 1.0
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bueyh"]
+radius = 0.3
+height = 1.0
+
+[node name="CropMound" type="StaticBody3D" groups=["tilled_land"]]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_wssmq")
+
+[node name="ground_pathTile2" parent="." instance=ExtResource("1_kioc6")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+visible = false
+shape = SubResource("BoxShape3D_ttlnw")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 5
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
+shape = SubResource("CapsuleShape3D_ms60u")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
+shape = SubResource("CapsuleShape3D_bueyh")

@@ -14,4 +14,3 @@ name = "Pail"
 description = "A watering pail used to water crops"
 stackable = false
 texture = SubResource("AtlasTexture_vade4")
-group_name = "ItemDataGroup"

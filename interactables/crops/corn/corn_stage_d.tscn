@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://b7awcrce42vlc"]
+[gd_scene load_steps=14 format=3 uid="uid://b7awcrce42vlc"]
 
 [ext_resource type="Script" path="res://interactables/crops/harvest_crop.gd" id="1_bxwcn"]
 [ext_resource type="Script" path="res://interactables/crops/stage_component.gd" id="1_pvw18"]
 [ext_resource type="Resource" uid="uid://bckr5msfq0iv8" path="res://inventory/resources/data/corn.tres" id="2_fyv1h"]
 [ext_resource type="Script" path="res://inventory/slot_data.gd" id="3_lhmp7"]
+[ext_resource type="PackedScene" uid="uid://bvg5usbptsqhu" path="res://interactables/crops/corn/corn_stage_a_corrupt.tscn" id="5_6k0xt"]
 
 [sub_resource type="Resource" id="Resource_scoh1"]
 script = ExtResource("3_lhmp7")
@@ -111,7 +112,7 @@ radius = 0.3
 height = 1.0
 
 [node name="Corn_StageD" type="StaticBody3D" groups=["crop", "harvestable"]]
-collision_layer = 5
+collision_layer = 4
 collision_mask = 0
 script = ExtResource("1_bxwcn")
 drop = SubResource("Resource_scoh1")
@@ -159,3 +160,4 @@ shape = SubResource("CapsuleShape3D_3so51")
 script = ExtResource("1_pvw18")
 last_stage = true
 stage_threshold = 2.0
+next_scene = ExtResource("5_6k0xt")

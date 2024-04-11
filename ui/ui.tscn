@@ -85,6 +85,9 @@ size_flags_vertical = 8
 layout_mode = 1
 debug_ui = NodePath("DebugUI")
 
+[node name="DebugUI" parent="Inventory/TimeSystem" index="1"]
+visible = false
+
 [connection signal="gui_input" from="Inventory/InventoryInterface" to="Inventory/InventoryInterface" method="_on_gui_input"]
 [connection signal="visibility_changed" from="Inventory/InventoryInterface" to="Inventory/InventoryInterface" method="_on_visibility_changed"]
 
