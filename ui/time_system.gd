@@ -1,16 +1,16 @@
 extends Node
 
-@export var second = 25200
-@export var minute = 0
-@export var hour = 7
-@export var day = 1
-@export var month = 1
-@export var year = 1
-@export var weekday = "Sun"
-@export var weekday_index = 0
-@export var season = "Spring"
-@export var time_format = "AM"
-@export var minute_interval = "00"
+var second = 25200
+var minute = 0
+var hour = 7
+var day = 1
+var month = 1
+var year = 1
+var weekday = "Sun"
+var weekday_index = 0
+var season = "Spring"
+var time_format = "AM"
+var minute_interval = "00"
 
 const weekdays = ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat"]
 const seasons = ["Spring", "Summer", "Fall", "Winter"]
