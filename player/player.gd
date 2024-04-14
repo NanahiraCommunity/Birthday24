@@ -101,7 +101,7 @@ func increase_def(def_value: int, name: String) -> void:
 			defence += equipped[items]
 
 func till_land() -> void:
-	if (interactables_map != null):
+	if (interactables_map != null and !interact_ray.is_colliding()):
 		var map_pos = interactables_map.local_to_map(self.position)
 		var cell_pos = interactables_map.map_to_local(map_pos)
 		var crop = crop_mound.instantiate()
@@ -112,7 +112,7 @@ func place_crop(crop_type: PlayerManager.CropType) -> void:
 	if interact_ray.is_colliding():
 		body = interact_ray.get_collider()
 		if (interactables_map != null):
-			if body.is_in_group("tilled_land"):
+			if (body.is_in_group("tilled_land") && !body.is_in_group("crop")):
 				body.place_crop(interactables_map, crop_type)
 				PlayerManager.can_place_crop = false
 

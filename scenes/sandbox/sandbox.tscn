@@ -56,7 +56,6 @@ cell_size = Vector3(1, 0.5, 1)
 metadata/_editor_floor_ = Vector3(0, 0, 0)
 
 [node name="Interactables" type="GridMap" parent="." groups=["world"]]
-visible = false
 mesh_library = ExtResource("11_rq1jy")
 cell_size = Vector3(1, 0.5, 1)
 metadata/_editor_floor_ = Vector3(0, 0, 0)
