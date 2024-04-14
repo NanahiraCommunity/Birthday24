@@ -5,3 +5,4 @@ private
 native/*.dll
 native/*.exp
 native/*.lib
+*.tmp

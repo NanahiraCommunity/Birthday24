@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bo280ef6e60vm"]
+[gd_scene load_steps=14 format=3 uid="uid://bo280ef6e60vm"]
 
 [ext_resource type="Script" path="res://scenes/sandbox/main.gd" id="1_8ggof"]
 [ext_resource type="PackedScene" uid="uid://qqpws51twfvt" path="res://environments/world_environment.tscn" id="1_r1w23"]
@@ -10,7 +10,6 @@
 [ext_resource type="Script" path="res://inventory/inventory_data.gd" id="8_lqde1"]
 [ext_resource type="Resource" uid="uid://bckr5msfq0iv8" path="res://inventory/resources/data/corn.tres" id="9_17v47"]
 [ext_resource type="Script" path="res://inventory/slot_data.gd" id="10_mef3b"]
-[ext_resource type="MeshLibrary" uid="uid://wv0b8mltxyk3" path="res://scenes/sandbox/sandbox_tiles.tres" id="11_rq1jy"]
 [ext_resource type="PackedScene" uid="uid://bd4c1h30e015d" path="res://ui/ui.tscn" id="13_i24o6"]
 
 [sub_resource type="Resource" id="Resource_ybfd1"]
@@ -47,7 +46,7 @@ cell_size = Vector3(1, 0.5, 1)
 metadata/_editor_floor_ = Vector3(0, 0, 0)
 
 [node name="Interactables" type="GridMap" parent="." groups=["world"]]
-mesh_library = ExtResource("11_rq1jy")
+mesh_library = ExtResource("3_05o8r")
 cell_size = Vector3(1, 0.5, 1)
 metadata/_editor_floor_ = Vector3(0, 0, 0)
 
