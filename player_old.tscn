@@ -1,0 +1,52 @@
+[gd_scene load_steps=4 format=3 uid="uid://cwhd3x6fyj7h6"]
+
+[ext_resource type="Script" path="res://Player.gd" id="1_5fm1h"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_o7evr"]
+height = 1.0
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wq805"]
+radius = 0.25
+height = 0.7
+
+[node name="Player" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6, 2.09505, 0.6)
+script = ExtResource("1_5fm1h")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("CapsuleShape3D_o7evr")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_wq805")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+size = Vector3(0.2, 0.5, 0.2)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.819152, 0.573576, 0, -0.573576, 0.819152, 0, 10.286, 14.977)
+fov = 10.0
+
+[node name="RCDown" type="RayCast3D" parent="."]
+target_position = Vector3(0, 0, 0.3)
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="RCUp" type="RayCast3D" parent="."]
+target_position = Vector3(0, 0, -0.3)
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="RCRight" type="RayCast3D" parent="."]
+target_position = Vector3(0.3, 0, 0)
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="RCLeft" type="RayCast3D" parent="."]
+target_position = Vector3(-0.3, 0, 0)
+collide_with_areas = true
+collide_with_bodies = false
+
+[connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]
+[connection signal="area_exited" from="Area3D" to="." method="_on_area_3d_area_exited"]

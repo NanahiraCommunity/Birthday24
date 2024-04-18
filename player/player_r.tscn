@@ -1,0 +1,34 @@
+[gd_scene load_steps=7 format=3 uid="uid://c8u2scdmvbow"]
+
+[ext_resource type="Script" path="res://player/player.gd" id="1_osuup"]
+[ext_resource type="Resource" uid="uid://dug2a44q5v0r5" path="res://player/inventory.tres" id="2_ei0mx"]
+[ext_resource type="Script" path="res://inventory/inventory_data_equip.gd" id="3_vqd7w"]
+
+[sub_resource type="Resource" id="Resource_mwmqo"]
+script = ExtResource("3_vqd7w")
+slot_datas = Array[Resource("res://inventory/slot_data.gd")]([null])
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_vu7wb"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2yvfu"]
+
+[node name="Player" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6, 2.095, 0.6)
+collision_layer = 2
+script = ExtResource("1_osuup")
+inventory_data = ExtResource("2_ei0mx")
+equip_inventory_data = SubResource("Resource_mwmqo")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_vu7wb")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_2yvfu")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.85264, 0.522499, 0, -0.522499, 0.85264, 0, 2.953, 4.86)
+
+[node name="InteractRay" type="RayCast3D" parent="Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.000495613, 0)
+target_position = Vector3(0, 0, -2.5)
+collision_mask = 4

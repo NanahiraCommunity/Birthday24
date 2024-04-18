@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ItemDataSeeds" load_steps=3 format=3 uid="uid://d4mubojn6pbux"]
+
+[ext_resource type="Script" path="res://inventory/resources/item_data_seeds.gd" id="1_04hxe"]
+[ext_resource type="Texture2D" uid="uid://vu04ouvui3sq" path="res://inventory/resources/data/seeds/seeds_atlas.tres" id="2_r4f0k"]
+
+[resource]
+script = ExtResource("1_04hxe")
+crop_type = 0
+name = "Corn Seeds"
+description = "A pack of corn seeds"
+stackable = true
+texture = ExtResource("2_r4f0k")
+group_name = "ItemDataGroup"

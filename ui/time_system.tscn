@@ -1,0 +1,75 @@
+[gd_scene load_steps=5 format=3 uid="uid://b3ebjtfjk0yae"]
+
+[ext_resource type="Script" path="res://ui/debug/debug_ui.gd" id="1_h6m6d"]
+[ext_resource type="Script" path="res://ui/time_hub.gd" id="2_kjm0b"]
+[ext_resource type="Script" path="res://ui/debug/stage_button.gd" id="3_ruoao"]
+[ext_resource type="Script" path="res://ui/debug/water_button.gd" id="4_nljan"]
+
+[node name="TimeSystem" type="Control"]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 3
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+size_flags_horizontal = 0
+mouse_filter = 2
+script = ExtResource("1_h6m6d")
+
+[node name="TimeHub" type="Control" parent="."]
+layout_mode = 2
+anchors_preset = 0
+offset_right = 102.0
+offset_bottom = 60.0
+script = ExtResource("2_kjm0b")
+
+[node name="DebugUI" type="Control" parent="."]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 576.0
+offset_right = 718.0
+offset_bottom = 60.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+
+[node name="Button" type="Button" parent="DebugUI"]
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 31.0
+text = "+ Stage"
+script = ExtResource("3_ruoao")
+
+[node name="Button2" type="Button" parent="DebugUI"]
+layout_mode = 0
+offset_left = 72.0
+offset_right = 136.0
+offset_bottom = 31.0
+text = "Water"
+script = ExtResource("4_nljan")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 2
+offset_right = 106.0
+offset_bottom = 60.0
+
+[node name="weekdayLabel" type="Label" parent="Panel"]
+layout_mode = 1
+offset_left = 8.0
+offset_right = 48.0
+offset_bottom = 23.0
+text = "Sun"
+
+[node name="dayLabel" type="Label" parent="Panel"]
+layout_mode = 1
+offset_left = 48.0
+offset_right = 88.0
+offset_bottom = 23.0
+text = "0"
+
+[node name="timeLabel" type="Label" parent="Panel"]
+layout_mode = 1
+offset_left = 8.0
+offset_top = 24.0
+offset_right = 48.0
+offset_bottom = 47.0
+text = "0"
