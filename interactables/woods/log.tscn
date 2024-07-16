@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://inventory/slot_data.gd" id="2_fjap8"]
 [ext_resource type="Resource" uid="uid://b6bb0w603nyg8" path="res://inventory/resources/data/materials/log.tres" id="2_lg1vr"]
 
-[sub_resource type="Resource" id="Resource_bdlg1"]
+[sub_resource type="Resource" id="Resource_xg23w"]
 script = ExtResource("2_fjap8")
 item_data = ExtResource("2_lg1vr")
 quantity = 1
@@ -80,7 +80,7 @@ data = PackedVector3Array(-0.1092, 0.1306, -0.1915, -0.0868, 0.1095, -0.1986, -0
 collision_layer = 5
 collision_mask = 0
 script = ExtResource("1_jq5lu")
-drop = SubResource("Resource_bdlg1")
+drop = SubResource("Resource_xg23w")
 
 [node name="log2" type="Node3D" parent="."]
 

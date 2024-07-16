@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://inventory/resources/item_data_tool.gd" id="1_ipuox"]
 [ext_resource type="Texture2D" uid="uid://cp0rk46f7txub" path="res://inventory/resources/data/tools/tools_atlas_texture.png" id="2_pw3m7"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_pkb8t"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_40t3m"]
 atlas = ExtResource("2_pw3m7")
 region = Rect2(32, 0, 16, 16)
 
@@ -13,4 +13,4 @@ tool_type = 0
 name = "Hoe"
 description = "A wooden hoe used to till land"
 stackable = false
-texture = SubResource("AtlasTexture_pkb8t")
+texture = SubResource("AtlasTexture_40t3m")

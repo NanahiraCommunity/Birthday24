@@ -1,9 +1,17 @@
-[gd_resource type="Resource" script_class="ItemData" load_steps=2 format=3 uid="uid://b6bb0w603nyg8"]
+[gd_resource type="Resource" script_class="ItemData" load_steps=4 format=3 uid="uid://b6bb0w603nyg8"]
 
 [ext_resource type="Script" path="res://inventory/resources/item_data.gd" id="1_4q4j4"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_retfj"]
+load_path = "res://.godot/imported/item_atlas_texture.png-8b179d61f1852bae6076254112e2dfbb.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mkb0p"]
+atlas = SubResource("CompressedTexture2D_retfj")
+region = Rect2(0, 544, 32, 32)
 
 [resource]
 script = ExtResource("1_4q4j4")
 name = "Log"
 description = "Small log"
 stackable = true
+texture = SubResource("AtlasTexture_mkb0p")

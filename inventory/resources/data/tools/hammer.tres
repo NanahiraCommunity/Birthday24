@@ -1,11 +1,7 @@
-[gd_resource type="Resource" script_class="ItemDataTool" load_steps=4 format=3 uid="uid://xnpr5t8a8tko"]
+[gd_resource type="Resource" script_class="ItemDataTool" load_steps=3 format=3 uid="uid://xnpr5t8a8tko"]
 
 [ext_resource type="Script" path="res://inventory/resources/item_data_tool.gd" id="1_g72tx"]
-[ext_resource type="Texture2D" uid="uid://cp0rk46f7txub" path="res://inventory/resources/data/tools/tools_atlas_texture.png" id="2_lt222"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_pkb8t"]
-atlas = ExtResource("2_lt222")
-region = Rect2(16, 0, 16, 16)
+[ext_resource type="Texture2D" uid="uid://cp6egxxf07xxy" path="res://inventory/resources/item_atlas.tres" id="2_aecit"]
 
 [resource]
 script = ExtResource("1_g72tx")
@@ -13,4 +9,4 @@ tool_type = 3
 name = "Hammer"
 description = "A wooden hammer used to break stone"
 stackable = false
-texture = SubResource("AtlasTexture_pkb8t")
+texture = ExtResource("2_aecit")

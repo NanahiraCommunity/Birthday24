@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bo280ef6e60vm"]
+[gd_scene load_steps=16 format=3 uid="uid://bo280ef6e60vm"]
 
 [ext_resource type="Script" path="res://scenes/sandbox/main.gd" id="1_8ggof"]
 [ext_resource type="PackedScene" uid="uid://qqpws51twfvt" path="res://environments/world_environment.tscn" id="1_r1w23"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://inventory/inventory_data.gd" id="8_lqde1"]
 [ext_resource type="Resource" uid="uid://bckr5msfq0iv8" path="res://inventory/resources/data/corn.tres" id="9_17v47"]
 [ext_resource type="Script" path="res://inventory/slot_data.gd" id="10_mef3b"]
+[ext_resource type="PackedScene" uid="uid://dumfky7fdj16i" path="res://interactables/woods/stone.tscn" id="11_ul3ck"]
 [ext_resource type="PackedScene" uid="uid://b56a0isva8fpr" path="res://interactables/woods/log.tscn" id="12_2vwq5"]
 [ext_resource type="PackedScene" uid="uid://bd4c1h30e015d" path="res://ui/ui.tscn" id="13_i24o6"]
 
@@ -42,7 +43,10 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.166, 1, -0.4)
 inventory_data = SubResource("Resource_8reg5")
 
 [node name="Log" parent="." instance=ExtResource("12_2vwq5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0836071, 0.90493, 0.472887)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0836071, 0.823568, 0.472887)
+
+[node name="Stone" parent="." instance=ExtResource("11_ul3ck")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.71729, 0.903065, 1.16178)
 
 [node name="StaticWorld" type="GridMap" parent="." groups=["world"]]
 mesh_library = ExtResource("3_05o8r")

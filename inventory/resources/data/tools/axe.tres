@@ -1,16 +1,18 @@
 [gd_resource type="Resource" script_class="ItemDataTool" load_steps=4 format=3 uid="uid://daujp50gayyen"]
 
 [ext_resource type="Script" path="res://inventory/resources/item_data_tool.gd" id="1_q33ff"]
-[ext_resource type="Texture2D" uid="uid://cp0rk46f7txub" path="res://inventory/resources/data/tools/tools_atlas_texture.png" id="2_hxxp0"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_pkb8t"]
-atlas = ExtResource("2_hxxp0")
-region = Rect2(32, 0, 16, 16)
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_retfj"]
+load_path = "res://.godot/imported/item_atlas_texture.png-8b179d61f1852bae6076254112e2dfbb.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hp0el"]
+atlas = SubResource("CompressedTexture2D_retfj")
+region = Rect2(32, 320, 32, 32)
 
 [resource]
 script = ExtResource("1_q33ff")
-tool_type = 0
-name = "Hoe"
-description = "A wooden hoe used to till land"
+tool_type = 2
+name = "Axe"
+description = "A wooden axe used to chop wood"
 stackable = false
-texture = SubResource("AtlasTexture_pkb8t")
+texture = SubResource("AtlasTexture_hp0el")

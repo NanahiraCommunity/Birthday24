@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=4 format=3 uid="uid://dq1sbnmxa72ee"]
+
+[ext_resource type="Script" path="res://inventory/resources/item_data.gd" id="1_3j61p"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_retfj"]
+load_path = "res://.godot/imported/item_atlas_texture.png-8b179d61f1852bae6076254112e2dfbb.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cd07v"]
+atlas = SubResource("CompressedTexture2D_retfj")
+region = Rect2(32, 544, 32, 32)
+
+[resource]
+script = ExtResource("1_3j61p")
+name = "Stone"
+description = "Small stone"
+stackable = true
+texture = SubResource("AtlasTexture_cd07v")
