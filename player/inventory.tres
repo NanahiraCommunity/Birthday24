@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="InventoryData" load_steps=11 format=3 uid="uid://dug2a44q5v0r5"]
+[gd_resource type="Resource" script_class="InventoryData" load_steps=15 format=3 uid="uid://dug2a44q5v0r5"]
 
 [ext_resource type="Script" path="res://inventory/inventory_data.gd" id="1_1uhqc"]
 [ext_resource type="Resource" uid="uid://bckr5msfq0iv8" path="res://inventory/resources/data/corn.tres" id="2_j3iv8"]
@@ -6,6 +6,8 @@
 [ext_resource type="Resource" uid="uid://cms5oxmuoojsl" path="res://inventory/resources/data/tools/pail.tres" id="4_awujm"]
 [ext_resource type="Resource" uid="uid://d4mubojn6pbux" path="res://inventory/resources/data/seeds/corn_seeds.tres" id="5_60iib"]
 [ext_resource type="Resource" uid="uid://birp4cxfp65qe" path="res://inventory/resources/data/tools/hoe.tres" id="6_q5m16"]
+[ext_resource type="Resource" uid="uid://daujp50gayyen" path="res://inventory/resources/data/tools/axe.tres" id="7_4c2lx"]
+[ext_resource type="Resource" uid="uid://xnpr5t8a8tko" path="res://inventory/resources/data/tools/hammer.tres" id="8_vjo7p"]
 
 [sub_resource type="Resource" id="Resource_ise13"]
 script = ExtResource("3_ngbyj")
@@ -27,6 +29,16 @@ script = ExtResource("3_ngbyj")
 item_data = ExtResource("6_q5m16")
 quantity = 1
 
+[sub_resource type="Resource" id="Resource_c01k1"]
+script = ExtResource("3_ngbyj")
+item_data = ExtResource("7_4c2lx")
+quantity = 1
+
+[sub_resource type="Resource" id="Resource_jirg8"]
+script = ExtResource("3_ngbyj")
+item_data = ExtResource("8_vjo7p")
+quantity = 1
+
 [resource]
 script = ExtResource("1_1uhqc")
-slot_datas = Array[ExtResource("3_ngbyj")]([SubResource("Resource_ise13"), SubResource("Resource_s6kfo"), SubResource("Resource_05am0"), SubResource("Resource_ajpkq"), null, null, null, null, null, null, null, null, null, null, null, null, null, null])
+slot_datas = Array[ExtResource("3_ngbyj")]([SubResource("Resource_ise13"), SubResource("Resource_s6kfo"), SubResource("Resource_05am0"), SubResource("Resource_ajpkq"), SubResource("Resource_c01k1"), SubResource("Resource_jirg8"), null, null, null, null, null, null, null, null, null, null, null, null])

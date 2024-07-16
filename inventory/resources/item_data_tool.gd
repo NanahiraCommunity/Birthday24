@@ -5,6 +5,7 @@ enum ToolType {
 	HOE,
 	PAIL,
 	AXE,
+	HAMMER,
 }
 
 @export var tool_type: ToolType
