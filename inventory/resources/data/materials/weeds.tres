@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=4 format=3 uid="uid://lis7oktgkj3b"]
+
+[ext_resource type="Script" path="res://inventory/resources/item_data.gd" id="1_dnrwj"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_retfj"]
+load_path = "res://.godot/imported/item_atlas_texture.png-8b179d61f1852bae6076254112e2dfbb.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_58aa1"]
+atlas = SubResource("CompressedTexture2D_retfj")
+region = Rect2(480, 352, 32, 32)
+
+[resource]
+script = ExtResource("1_dnrwj")
+name = "Weeds"
+description = "Weeds"
+stackable = true
+texture = SubResource("AtlasTexture_58aa1")
